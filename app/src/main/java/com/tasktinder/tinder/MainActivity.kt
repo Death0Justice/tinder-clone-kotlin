@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                 val obj = dataObject as cards
                 val userId = obj.userId
                 usersDb?.child(userId)?.child("connections")?.child("yeps")?.child(currentUId)?.setValue(true)
+                usersDb?.child(currentUId)?.child("connections")?.child("pending")?.child(userId)?.setValue(true)
                 isConnectionMatch(userId)
                 Toast.makeText(this@MainActivity, "Right", Toast.LENGTH_SHORT).show()
             }
@@ -116,8 +117,6 @@ class MainActivity : AppCompatActivity() {
                             if (dataSnapshot.child("profileImageUrl").value != "default") {
                                 profileImageUrl = dataSnapshot.child("profileImageUrl").value.toString()
                             }
-                            Log.i("Firebase", "current snapshot: ${dataSnapshot.key}")
-                            Log.i("Firebase", "current snapshot: ${dataSnapshot.child("name").value.toString()}")
                             val item = cards(dataSnapshot.key, dataSnapshot.child("name").value.toString(), profileImageUrl)
                             rowItems!!.add(item)
                             arrayAdapter!!.notifyDataSetChanged()

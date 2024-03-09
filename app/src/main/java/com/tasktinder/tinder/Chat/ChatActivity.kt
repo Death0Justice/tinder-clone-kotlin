@@ -21,29 +21,16 @@ class ChatActivity : AppCompatActivity() {
     private var currentUserID: String? = null
     private var matchId: String? = null
     private var chatId: String? = null
-        private get() {
-            mDatabaseUser!!.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        field = dataSnapshot.value.toString()
-                        mDatabaseChat = mDatabaseChat!!.child(field)
-                        chatMessages
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {}
-            })
-            return chatId
-        }
     var mDatabaseUser: DatabaseReference? = null
     var mDatabaseChat: DatabaseReference? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
         matchId = intent.extras!!.getString("matchId")
+        chatId = intent.extras!!.getString("chatId")
         currentUserID = FirebaseAuth.getInstance().currentUser!!.uid
         mDatabaseUser = FirebaseDatabase.getInstance().reference.child("Users").child(currentUserID).child("connections").child("matches").child(matchId).child("ChatId")
-        mDatabaseChat = FirebaseDatabase.getInstance().reference.child("Chat")
+        mDatabaseChat = FirebaseDatabase.getInstance().reference.child("Chat").child(chatId)
         mRecyclerView = findViewById<View>(R.id.recyclerView) as RecyclerView
         mRecyclerView!!.isNestedScrollingEnabled = false
         mRecyclerView!!.setHasFixedSize(false)
@@ -54,25 +41,22 @@ class ChatActivity : AppCompatActivity() {
         mSendEditText = findViewById(R.id.message)
         mSendButton = findViewById(R.id.send)
         mSendButton?.setOnClickListener(View.OnClickListener { sendMessage() })
+        chatMessages
     }
 
     private fun sendMessage() {
         val sendMessageText = mSendEditText!!.text.toString()
-        if (!sendMessageText.isEmpty()) {
-            val newMessageDb = mDatabaseChat!!.push()
-            val newMessage: MutableMap<*, *> = HashMap<Any?, Any?>()
-            newMessage.set("createdByUser", currentUserID)
-            newMessage.set("text", sendMessageText)
-            newMessageDb.setValue(newMessage)
-        }
+//        if (!sendMessageText.isEmpty()) {
+//            val newMessageDb = mDatabaseChat!!.push()
+//            val newMessage = mutableMapOf<Any?, Any?>("createdByUser" to currentUserID, "text" to sendMessageText)
+//            newMessageDb.setValue(newMessage)
+//        }
         mSendEditText.run {
             if (!sendMessageText.isEmpty()) {
-            val newMessageDb = mDatabaseChat!!.push()
-            val newMessage: MutableMap<*, *> = HashMap<Any?, Any?>()
-            newMessage.set("createdByUser", currentUserID)
-            newMessage.set("text", sendMessageText)
-            newMessageDb.setValue(newMessage)
-        }
+                val newMessageDb = mDatabaseChat!!.push()
+                val newMessage = mutableMapOf<Any?, Any?>("createdByUser" to currentUserID, "text" to sendMessageText)
+                newMessageDb.setValue(newMessage)
+            }
             setText()
         }
     }
@@ -80,7 +64,7 @@ class ChatActivity : AppCompatActivity() {
     private val chatMessages: Unit
         private get() {
             mDatabaseChat!!.addChildEventListener(object : ChildEventListener {
-                override fun onChildAdded(dataSnapshot: DataSnapshot, s: String) {
+                override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
                     if (dataSnapshot.exists()) {
                         var message: String? = null
                         var createdByUser: String? = null
@@ -102,9 +86,9 @@ class ChatActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onChildChanged(dataSnapshot: DataSnapshot, s: String) {}
+                override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
                 override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
-                override fun onChildMoved(dataSnapshot: DataSnapshot, s: String) {}
+                override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
                 override fun onCancelled(databaseError: DatabaseError) {}
             })
         }

@@ -14,12 +14,14 @@ import com.tasktinder.tinder.R
  */
 class MatchesViewHolders(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
     var mMatchId: TextView
+    var mChatId: TextView
     var mMatchName: TextView
     var mMatchImage: ImageView
     override fun onClick(view: View) {
         val intent = Intent(view.context, ChatActivity::class.java)
         val b = Bundle()
         b.putString("matchId", mMatchId.text.toString())
+        b.putString("chatId", mChatId.text.toString())
         intent.putExtras(b)
         view.context.startActivity(intent)
     }
@@ -27,6 +29,7 @@ class MatchesViewHolders(itemView: View) : RecyclerView.ViewHolder(itemView), Vi
     init {
         itemView.setOnClickListener(this)
         mMatchId = itemView.findViewById<View>(R.id.Matchid) as TextView
+        mChatId = itemView.findViewById<View>(R.id.Chatid) as TextView
         mMatchName = itemView.findViewById<View>(R.id.MatchName) as TextView
         mMatchImage = itemView.findViewById<View>(R.id.MatchImage) as ImageView
     }

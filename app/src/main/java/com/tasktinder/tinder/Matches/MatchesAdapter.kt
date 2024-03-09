@@ -21,6 +21,7 @@ class MatchesAdapter(private val matchesList: List<MatchesObject>, private val c
     override fun onBindViewHolder(holder: MatchesViewHolders, position: Int) {
         holder.mMatchId.text = matchesList[position].userId
         holder.mMatchName.text = matchesList[position].name
+        holder.mChatId.text = matchesList[position].chatId
         if (matchesList[position].profileImageUrl != "default") {
             Glide.with(context).load(matchesList[position].profileImageUrl).into(holder.mMatchImage)
         }

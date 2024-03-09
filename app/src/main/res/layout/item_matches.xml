@@ -27,6 +27,13 @@
             android:text="Match's ID"
             android:layout_gravity="center"
             android:id="@+id/Matchid"/>
+
+        <TextView
+            android:id="@+id/Chatid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
     </LinearLayout>
 
 
