@@ -1,4 +1,4 @@
-package com.businesstinder.tinder;
+package com.tasktinder.tinder;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

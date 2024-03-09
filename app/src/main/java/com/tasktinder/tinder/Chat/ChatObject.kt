@@ -1,4 +1,4 @@
-package com.businesstinder.tinder.Chat
+package com.tasktinder.tinder.Chat
 
 /**
  * Created by manel on 10/31/2017.

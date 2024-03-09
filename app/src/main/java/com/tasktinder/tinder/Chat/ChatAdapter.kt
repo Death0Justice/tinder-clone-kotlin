@@ -1,4 +1,4 @@
-package com.businesstinder.tinder.Chat
+package com.tasktinder.tinder.Chat
 
 import android.content.Context
 import android.graphics.Color
@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.businesstinder.tinder.R
+import com.tasktinder.tinder.R
 
 /**
  * Created by manel on 10/31/2017.

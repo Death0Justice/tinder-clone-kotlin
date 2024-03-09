@@ -1,4 +1,4 @@
-package com.businesstinder.tinder.Cards
+package com.tasktinder.tinder.Cards
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.businesstinder.tinder.R
+import com.tasktinder.tinder.R
 
 /**
  * Created by manel on 9/5/2017.

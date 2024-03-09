@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "806162683089",
+    "firebase_url": "https://task-tinder-firebase-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "task-tinder-firebase",
+    "storage_bucket": "task-tinder-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806162683089:android:6cc9c157a7325c0c2aa1f0",
+        "android_client_info": {
+          "package_name": "com.tasktinder.tinder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu5BZ6UNWU-n-WIi8n6b5bYD02PQA5E_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

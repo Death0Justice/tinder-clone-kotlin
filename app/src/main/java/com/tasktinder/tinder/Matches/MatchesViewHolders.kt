@@ -1,4 +1,4 @@
-package com.businesstinder.tinder.Matches
+package com.tasktinder.tinder.Matches
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.businesstinder.tinder.Chat.ChatActivity
-import com.businesstinder.tinder.R
+import com.tasktinder.tinder.Chat.ChatActivity
+import com.tasktinder.tinder.R
 
 /**
  * Created by manel on 10/31/2017.

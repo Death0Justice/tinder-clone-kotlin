@@ -1,11 +1,11 @@
-package com.businesstinder.tinder.Matches
+package com.tasktinder.tinder.Matches
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.businesstinder.tinder.R
+import com.tasktinder.tinder.R
 
 /**
  * Created by manel on 10/31/2017.

@@ -1,8 +1,9 @@
-package com.businesstinder.tinder
+package com.tasktinder.tinder
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
@@ -45,16 +46,18 @@ class RegistrationActivity : AppCompatActivity() {
             val email = mEmail!!.text.toString()
             val password = mPassword!!.text.toString()
             val name = mName!!.text.toString()
+            if (password == "") {
+                Toast.makeText(this@RegistrationActivity, "Password cannot be empty!", Toast.LENGTH_SHORT).show()
+                return@OnClickListener
+            }
             mAuth?.createUserWithEmailAndPassword(email, password)?.addOnCompleteListener(this@RegistrationActivity) { task ->
                 if (!task.isSuccessful) {
                     Toast.makeText(this@RegistrationActivity, "sign up error", Toast.LENGTH_SHORT).show()
+                    Log.e("Firebase Auth", "Sign-in failed", task.exception);
                 } else {
                     val userId = mAuth?.getCurrentUser()!!.uid
                     val currentUserDb = FirebaseDatabase.getInstance().reference.child("Users").child(userId)
-                    val userInfo: MutableMap<*, *> = HashMap<Any?, Any?>()
-                    userInfo["name"] = name
-                    userInfo["sex"] = radioButton.text.toString()
-                    userInfo["profileImageUrl"] = "default"
+                    val userInfo = mutableMapOf<String, Any>("name" to name, "sex" to radioButton.text!!.toString(), "profileImageUrl" to "default")
                     currentUserDb.updateChildren(userInfo as MutableMap<String, Any>?)
                 }
             }

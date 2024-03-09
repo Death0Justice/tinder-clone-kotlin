@@ -6,6 +6,11 @@
       <module fileurl="file://$PROJECT_DIR$/TinderClone-master-kotlin.iml" filepath="$PROJECT_DIR$/TinderClone-master-kotlin.iml" group="TinderClone-master-kotlin" />
       <module fileurl="file://$PROJECT_DIR$/app/TinderClone-master-kotlin-app.iml" filepath="$PROJECT_DIR$/app/TinderClone-master-kotlin-app.iml" group="TinderClone-master-kotlin/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tinder-clone-kotlin.iml" filepath="$PROJECT_DIR$/.idea/modules/tinder-clone-kotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/tinder-clone-kotlin.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/tinder-clone-kotlin.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/tinder-clone-kotlin.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/tinder-clone-kotlin.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/tinder-clone-kotlin.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/tinder-clone-kotlin.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/tinder-clone-kotlin.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/tinder-clone-kotlin.app.unitTest.iml" />
     </modules>
   </component>
 </project>

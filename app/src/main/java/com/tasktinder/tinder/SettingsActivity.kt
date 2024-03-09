@@ -1,4 +1,4 @@
-package com.businesstinder.tinder
+package com.tasktinder.tinder
 
 import android.app.Activity
 import android.content.Intent

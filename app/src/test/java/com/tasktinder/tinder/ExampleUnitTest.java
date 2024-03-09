@@ -1,4 +1,4 @@
-package com.businesstinder.tinder;
+package com.tasktinder.tinder;
 
 import org.junit.Test;
 

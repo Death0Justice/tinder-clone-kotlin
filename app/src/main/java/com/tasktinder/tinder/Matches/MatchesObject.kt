@@ -1,4 +1,4 @@
-package com.businesstinder.tinder.Matches
+package com.tasktinder.tinder.Matches
 
 /**
  * Created by manel on 10/31/2017.

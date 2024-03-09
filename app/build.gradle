@@ -6,7 +6,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion '26.0.3'
     defaultConfig {
-        applicationId "com.businesstinder.tinder"
+        applicationId "com.tasktinder.tinder"
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1

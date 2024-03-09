@@ -1,4 +1,4 @@
-package com.businesstinder.tinder.Chat
+package com.tasktinder.tinder.Chat
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import com.businesstinder.tinder.R
+import com.tasktinder.tinder.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*

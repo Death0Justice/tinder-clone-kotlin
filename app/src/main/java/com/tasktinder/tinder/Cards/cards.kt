@@ -1,4 +1,4 @@
-package com.businesstinder.tinder.Cards
+package com.tasktinder.tinder.Cards
 
 /**
  * Created by manel on 9/5/2017.

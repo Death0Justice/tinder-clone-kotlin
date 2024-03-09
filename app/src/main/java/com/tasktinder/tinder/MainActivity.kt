@@ -1,4 +1,4 @@
-package com.businesstinder.tinder
+package com.tasktinder.tinder
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.ListView
 import android.widget.Toast
-import com.businesstinder.tinder.Cards.arrayAdapter
-import com.businesstinder.tinder.Cards.cards
-import com.businesstinder.tinder.Matches.MatchesActivity
+import com.tasktinder.tinder.Cards.arrayAdapter
+import com.tasktinder.tinder.Cards.cards
+import com.tasktinder.tinder.Matches.MatchesActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.lorentzos.flingswipe.SwipeFlingAdapterView
@@ -109,13 +109,15 @@ class MainActivity : AppCompatActivity() {
     val oppositeSexUsers: Unit
         get() {
             usersDb!!.addChildEventListener(object : ChildEventListener {
-                override fun onChildAdded(dataSnapshot: DataSnapshot, s: String) {
+                override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
                     if (dataSnapshot.child("sex").value != null) {
                         if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("nope").hasChild(currentUId) && !dataSnapshot.child("connections").child("yeps").hasChild(currentUId) && dataSnapshot.child("sex").value.toString() == oppositeUserSex) {
                             var profileImageUrl = "default"
                             if (dataSnapshot.child("profileImageUrl").value != "default") {
                                 profileImageUrl = dataSnapshot.child("profileImageUrl").value.toString()
                             }
+                            Log.i("Firebase", "current snapshot: ${dataSnapshot.key}")
+                            Log.i("Firebase", "current snapshot: ${dataSnapshot.child("name").value.toString()}")
                             val item = cards(dataSnapshot.key, dataSnapshot.child("name").value.toString(), profileImageUrl)
                             rowItems!!.add(item)
                             arrayAdapter!!.notifyDataSetChanged()
@@ -123,9 +125,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onChildChanged(dataSnapshot: DataSnapshot, s: String) {}
+                override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
                 override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
-                override fun onChildMoved(dataSnapshot: DataSnapshot, s: String) {}
+                override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
                 override fun onCancelled(databaseError: DatabaseError) {}
             })
         }
