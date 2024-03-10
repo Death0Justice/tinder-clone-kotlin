@@ -4,38 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tasktinder.tinder.MainActivity"
-    android:orientation="vertical">
+    android:background="#FFF3A3"
+    android:orientation="vertical"
+    tools:context="com.tasktinder.tinder.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SignOut"
-            android:onClick="logoutUser" />
+            android:onClick="logoutUser"
+            android:text="SignOut" />
+
         <Button
+            android:layout_width="141dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="goToMatches"
+            android:text="Matches" />
+
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Matches"
-            android:onClick="goToMatches" />
-        <Button
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Settings"
-            android:onClick="goToSettings" />
+            android:clickable="true"
+            android:foreground="@drawable/settings_icon"
+            android:foregroundGravity="center"
+            android:onClick="goToSettings"
+            android:scaleType="centerInside"
+            android:scaleX="1.5"
+            android:scaleY="1.5" />
     </LinearLayout>
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/frame"
-        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFF3A3"
         app:rotation_degrees="15.5"
-        tools:context=".MyActivity"/>
+        tools:context=".MyActivity" />
 
 </LinearLayout>

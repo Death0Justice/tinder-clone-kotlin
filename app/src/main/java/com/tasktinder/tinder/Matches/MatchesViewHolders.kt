@@ -18,6 +18,7 @@ class MatchesViewHolders(itemView: View) : RecyclerView.ViewHolder(itemView), Vi
     var mMatchName: TextView
     var mMatchImage: ImageView
     override fun onClick(view: View) {
+        if (mChatId.text.toString() == "") return
         val intent = Intent(view.context, ChatActivity::class.java)
         val b = Bundle()
         b.putString("matchId", mMatchId.text.toString())

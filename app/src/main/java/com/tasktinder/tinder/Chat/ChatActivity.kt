@@ -57,7 +57,7 @@ class ChatActivity : AppCompatActivity() {
                 val newMessage = mutableMapOf<Any?, Any?>("createdByUser" to currentUserID, "text" to sendMessageText)
                 newMessageDb.setValue(newMessage)
             }
-            setText()
+            mSendEditText!!.setText("")
         }
     }
 
@@ -98,9 +98,9 @@ class ChatActivity : AppCompatActivity() {
         private get() = resultsChat
 }
 
-private fun EditText?.setText() {
-
-}
+//private fun EditText?.setText() {
+//
+//}
 
 
 private operator fun <K, V> MutableMap<K, V>.set(v: String, value: String?) {

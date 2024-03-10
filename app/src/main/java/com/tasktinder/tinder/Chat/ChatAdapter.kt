@@ -23,12 +23,12 @@ class ChatAdapter(private val chatList: List<ChatObject>, private val context: C
         holder.mMessage.text = chatList[position].message
         if (chatList[position].currentUser) {
             holder.mMessage.gravity = Gravity.END
-            holder.mMessage.setTextColor(Color.parseColor("#404040"))
-            holder.mContainer.setBackgroundColor(Color.parseColor("#F4F4F4"))
+            holder.mMessage.setTextColor(Color.parseColor("#000000"))
+            holder.mContainer.setBackgroundColor(Color.parseColor("#F6E000"))
         } else {
             holder.mMessage.gravity = Gravity.START
-            holder.mMessage.setTextColor(Color.parseColor("#FFFFFF"))
-            holder.mContainer.setBackgroundColor(Color.parseColor("#2DB4C8"))
+            holder.mMessage.setTextColor(Color.parseColor("#000000"))
+            holder.mContainer.setBackgroundColor(Color.parseColor("#FFFFFF"))
         }
     }
 

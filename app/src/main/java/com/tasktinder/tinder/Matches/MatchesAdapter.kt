@@ -25,6 +25,9 @@ class MatchesAdapter(private val matchesList: List<MatchesObject>, private val c
         if (matchesList[position].profileImageUrl != "default") {
             Glide.with(context).load(matchesList[position].profileImageUrl).into(holder.mMatchImage)
         }
+        if (matchesList[position].chatId == "") {
+            // TODO: Add buttons to accept or decline the swiped pending result.
+        }
     }
 
     override fun getItemCount(): Int {

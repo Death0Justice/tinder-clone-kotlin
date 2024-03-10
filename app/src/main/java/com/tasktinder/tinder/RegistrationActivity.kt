@@ -57,7 +57,7 @@ class RegistrationActivity : AppCompatActivity() {
                 } else {
                     val userId = mAuth?.getCurrentUser()!!.uid
                     val currentUserDb = FirebaseDatabase.getInstance().reference.child("Users").child(userId)
-                    val userInfo = mutableMapOf<String, Any>("name" to name, "sex" to radioButton.text!!.toString(), "profileImageUrl" to "default")
+                    val userInfo = mutableMapOf<String, Any>("name" to name, "acceptance" to radioButton.text!!.toString(), "profileImageUrl" to "default")
                     currentUserDb.updateChildren(userInfo as MutableMap<String, Any>?)
                 }
             }

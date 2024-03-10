@@ -32,7 +32,7 @@ class SettingsActivity : AppCompatActivity() {
     private var name: String? = null
     private var phone: String? = null
     private var profileImageUrl: String? = null
-    private var userSex: String? = null
+    private var userAcceptance: String? = null
     private var resultUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,8 +72,8 @@ class SettingsActivity : AppCompatActivity() {
                             phone = map["phone"].toString()
                             mPhoneField!!.setText(phone)
                         }
-                        if (map["sex"] != null) {
-                            userSex = map["sex"].toString()
+                        if (map["acceptance"] != null) {
+                            userAcceptance = map["acceptance"].toString()
                         }
                         Glide.clear(mProfileImage)
                         if (map["profileImageUrl"] != null) {
@@ -93,9 +93,7 @@ class SettingsActivity : AppCompatActivity() {
     private fun saveUserInformation() {
         name = mNameField!!.text.toString()
         phone = mPhoneField!!.text.toString()
-        val userInfo: MutableMap<*, *> = HashMap<Any?, Any?>()
-        userInfo.set("name", name)
-        userInfo.set("phone", phone)
+        val userInfo = mutableMapOf<String, Any>("name" to name!!, "phone" to phone!!)
         mUserDatabase!!.updateChildren(userInfo as MutableMap<String, Any>?)
         if (resultUri != null) {
             val filepath = FirebaseStorage.getInstance().reference.child("profileImages").child(userId!!)
@@ -112,8 +110,7 @@ class SettingsActivity : AppCompatActivity() {
             uploadTask.addOnFailureListener { finish() }
             uploadTask.addOnSuccessListener(OnSuccessListener { taskSnapshot ->
                 val downloadUrl = taskSnapshot.downloadUrl
-                val userInfo: MutableMap<*, *> = HashMap<Any?, Any?>()
-                userInfo.set("profileImageUrl", downloadUrl.toString())
+                val userInfo = mutableMapOf<String, Any>("profileImageUrl" to downloadUrl.toString())
                 mUserDatabase!!.updateChildren(userInfo as MutableMap<String, Any>?)
                 finish()
                 return@OnSuccessListener
@@ -131,8 +128,4 @@ class SettingsActivity : AppCompatActivity() {
             mProfileImage!!.setImageURI(resultUri)
         }
     }
-}
-
-operator fun <K, V> MutableMap<K, V>.set(v: String, value: String?) {
-
 }

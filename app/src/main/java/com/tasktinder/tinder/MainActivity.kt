@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         usersDb = FirebaseDatabase.getInstance().reference.child("Users")
         mAuth = FirebaseAuth.getInstance()
         currentUId = mAuth?.getCurrentUser()!!.uid
-        checkUserSex()
+        checkUserAcceptance()
         rowItems = ArrayList()
         arrayAdapter = arrayAdapter(this, R.layout.item, rowItems)
         val flingContainer = findViewById<View>(R.id.frame) as SwipeFlingAdapterView
@@ -75,6 +75,8 @@ class MainActivity : AppCompatActivity() {
                 if (dataSnapshot.exists()) {
                     Toast.makeText(this@MainActivity, "new Connection", Toast.LENGTH_LONG).show()
                     val key = FirebaseDatabase.getInstance().reference.child("Chat").push().key
+                    // remove the pending swipe if swiped partner swiped back
+                    usersDb!!.child(dataSnapshot.key).child("connections").child("pendings").child(currentUId).removeValue()
                     usersDb!!.child(dataSnapshot.key).child("connections").child("matches").child(currentUId).child("ChatId").setValue(key)
                     usersDb!!.child(currentUId).child("connections").child("matches").child(dataSnapshot.key).child("ChatId").setValue(key)
                 }
@@ -84,21 +86,21 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private var userSex: String? = null
-    private var oppositeUserSex: String? = null
-    fun checkUserSex() {
+    private var userAcceptance: String? = null
+    private var oppositeUserAcceptance: String? = null
+    fun checkUserAcceptance() {
         val user = FirebaseAuth.getInstance().currentUser
         val userDb = usersDb!!.child(user!!.uid)
         userDb.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    if (dataSnapshot.child("sex").value != null) {
-                        userSex = dataSnapshot.child("sex").value.toString()
-                        when (userSex) {
-                            "Male" -> oppositeUserSex = "Female"
-                            "Female" -> oppositeUserSex = "Male"
+                    if (dataSnapshot.child("acceptance").value != null) {
+                        userAcceptance = dataSnapshot.child("acceptance").value.toString()
+                        when (userAcceptance) {
+                            "Accept" -> oppositeUserAcceptance = "Provide"
+                            "Provide" -> oppositeUserAcceptance = "Accept"
                         }
-                        oppositeSexUsers
+                        oppositeAcceptanceUser
                     }
                 }
             }
@@ -107,12 +109,12 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    val oppositeSexUsers: Unit
+    val oppositeAcceptanceUser: Unit
         get() {
             usersDb!!.addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-                    if (dataSnapshot.child("sex").value != null) {
-                        if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("nope").hasChild(currentUId) && !dataSnapshot.child("connections").child("yeps").hasChild(currentUId) && dataSnapshot.child("sex").value.toString() == oppositeUserSex) {
+                    if (dataSnapshot.child("acceptance").value != null) {
+                        if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("nope").hasChild(currentUId) && !dataSnapshot.child("connections").child("yeps").hasChild(currentUId) && dataSnapshot.child("acceptance").value.toString() == oppositeUserAcceptance) {
                             var profileImageUrl = "default"
                             if (dataSnapshot.child("profileImageUrl").value != "default") {
                                 profileImageUrl = dataSnapshot.child("profileImageUrl").value.toString()
