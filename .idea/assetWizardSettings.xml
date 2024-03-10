@@ -37,8 +37,9 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\DeathJustice\Downloads\drive-download-20240310T095953Z-001\Settings Icon (1).png" />
+                                                <entry key="imagePath" value="C:\Users\DeathJustice\Downloads\drive-download-20240310T095953Z-001\Sign out#.png" />
                                                 <entry key="opacityPercent" value="80" />
+                                                <entry key="paddingPercent" value="5" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -50,6 +51,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -61,6 +63,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -71,8 +74,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\DeathJustice\Downloads\drive-download-20240310T095953Z-001\Settings Icon (1).png" />
-                                      <entry key="outputName" value="settings_icon" />
+                                      <entry key="imageAsset" value="C:\Users\DeathJustice\Downloads\drive-download-20240310T095953Z-001\Sign out#.png" />
+                                      <entry key="outputName" value="signout_button" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="fddc44" />
                                     </map>
@@ -102,8 +105,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\DeathJustice\Downloads\app_icon_6.png" />
-                                                <entry key="scalingPercent" value="118" />
+                                                <entry key="imagePath" value="C:\Users\DeathJustice\Downloads\drive-download-20240310T095953Z-001\app icon 3.png" />
+                                                <entry key="scalingPercent" value="135" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -138,7 +141,7 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="ffffff" />
-                                      <entry key="outputName" value="settings_button" />
+                                      <entry key="outputName" value="default_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -307,11 +310,6 @@
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

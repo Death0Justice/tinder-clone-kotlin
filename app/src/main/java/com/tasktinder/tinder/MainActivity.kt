@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.lorentzos.flingswipe.SwipeFlingAdapterView
 import com.lorentzos.flingswipe.SwipeFlingAdapterView.onFlingListener
+import com.tasktinder.tinder.Matches.MatchesObject
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 val obj = dataObject as cards
                 val userId = obj.userId
                 usersDb?.child(userId)?.child("connections")?.child("nope")?.child(currentUId)?.setValue(true)
-                Toast.makeText(this@MainActivity, "Left", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Nope!", Toast.LENGTH_SHORT).show()
             }
 
             override fun onRightCardExit(dataObject: Any) {
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 usersDb?.child(userId)?.child("connections")?.child("yeps")?.child(currentUId)?.setValue(true)
                 usersDb?.child(currentUId)?.child("connections")?.child("pending")?.child(userId)?.setValue(true)
                 isConnectionMatch(userId)
-                Toast.makeText(this@MainActivity, "Right", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Yep!", Toast.LENGTH_SHORT).show()
             }
 
             override fun onAdapterAboutToEmpty(itemsInAdapter: Int) {}
@@ -65,7 +66,10 @@ class MainActivity : AppCompatActivity() {
 
 
         // Optionally add an OnItemClickListener
-        flingContainer.setOnItemClickListener { itemPosition, dataObject -> Toast.makeText(this@MainActivity, "Item Clicked", Toast.LENGTH_SHORT).show() }
+        flingContainer.setOnItemClickListener { itemPosition, dataObject ->
+//            Toast.makeText(this@MainActivity, "Item Clicked", Toast.LENGTH_SHORT).show()
+            val obj = dataObject as cards
+        }
     }
 
     private fun isConnectionMatch(userId: String) {
@@ -76,7 +80,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "new Connection", Toast.LENGTH_LONG).show()
                     val key = FirebaseDatabase.getInstance().reference.child("Chat").push().key
                     // remove the pending swipe if swiped partner swiped back
-                    usersDb!!.child(dataSnapshot.key).child("connections").child("pendings").child(currentUId).removeValue()
+                    usersDb!!.child(dataSnapshot.key).child("connections").child("pending").child(currentUId).removeValue()
+                    usersDb!!.child(currentUId).child("connections").child("pending").child(dataSnapshot.key).removeValue()
                     usersDb!!.child(dataSnapshot.key).child("connections").child("matches").child(currentUId).child("ChatId").setValue(key)
                     usersDb!!.child(currentUId).child("connections").child("matches").child(dataSnapshot.key).child("ChatId").setValue(key)
                 }
@@ -100,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                             "Accept" -> oppositeUserAcceptance = "Provide"
                             "Provide" -> oppositeUserAcceptance = "Accept"
                         }
+                        pendingUser
                         oppositeAcceptanceUser
                     }
                 }
@@ -132,6 +138,46 @@ class MainActivity : AppCompatActivity() {
                 override fun onCancelled(databaseError: DatabaseError) {}
             })
         }
+
+
+    private val pendingUser: Unit
+        private get() {
+            val pendingDb = FirebaseDatabase.getInstance().reference.child("Users").child(currentUId).child("connections").child("pending")
+            pendingDb.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        for (pending in dataSnapshot.children) {
+                            FetchPendingInformation(pending.key)
+                        }
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {}
+            })
+        }
+
+    private fun FetchPendingInformation(key: String) {
+        val userDb = FirebaseDatabase.getInstance().reference.child("Users").child(key)
+        userDb.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    var name = ""
+                    var profileImageUrl = ""
+                    if (dataSnapshot.child("name").value != null) {
+                        name = dataSnapshot.child("name").value.toString()
+                    }
+                    if (dataSnapshot.child("profileImageUrl").value != null) {
+                        profileImageUrl = dataSnapshot.child("profileImageUrl").value.toString()
+                    }
+                    val item = cards(dataSnapshot.key, name, profileImageUrl)
+                    rowItems!!.add(0, item)
+                    arrayAdapter!!.notifyDataSetChanged()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
+    }
 
     fun logoutUser(view: View?) {
         mAuth!!.signOut()

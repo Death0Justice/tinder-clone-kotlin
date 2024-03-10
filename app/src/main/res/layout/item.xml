@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="#FFF3A3"
+    android:background="#00FF0000"
     android:clipToPadding="false"
     android:outlineProvider="bounds"
     android:paddingLeft="40sp"
@@ -40,8 +40,9 @@
                 android:layout_height="match_parent"
                 android:gravity="center|left"
                 android:paddingLeft="20sp"
-                android:textColor="@android:color/black"
+                android:textColor="#FFFFFF"
                 android:textSize="30sp"
+                android:textStyle="bold"
                 tools:text="hello" />
 
         </LinearLayout>

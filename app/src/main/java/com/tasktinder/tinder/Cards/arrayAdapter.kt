@@ -25,7 +25,7 @@ class arrayAdapter(context: Context?, resourceId: Int, items: List<cards?>?) : A
         val image = convertView.findViewById<View>(R.id.image) as ImageView
         name.text = card_item!!.name
         when (card_item.profileImageUrl) {
-            "default" -> Glide.with(convertView.context).load(R.mipmap.ic_launcher).into(image)
+            "default" -> image.setImageResource(R.mipmap.default_icon)
             else -> {
                 Glide.clear(image)
                 Glide.with(convertView.context).load(card_item.profileImageUrl).into(image)

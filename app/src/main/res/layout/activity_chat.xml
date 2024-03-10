@@ -40,7 +40,9 @@
             android:layout_height="match_parent"
             android:layout_weight="0.2"
             android:background="#f6e000"
-            android:text="Send" />
+            android:text="Send"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </RelativeLayout>

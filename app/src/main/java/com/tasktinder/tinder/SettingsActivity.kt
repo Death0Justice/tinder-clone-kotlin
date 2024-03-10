@@ -79,7 +79,7 @@ class SettingsActivity : AppCompatActivity() {
                         if (map["profileImageUrl"] != null) {
                             profileImageUrl = map["profileImageUrl"].toString()
                             when (profileImageUrl) {
-                                "default" -> Glide.with(application).load(R.mipmap.ic_launcher).into(mProfileImage)
+                                "default" -> mProfileImage!!.setImageResource(R.mipmap.default_icon)
                                 else -> Glide.with(application).load(profileImageUrl).into(mProfileImage)
                             }
                         }

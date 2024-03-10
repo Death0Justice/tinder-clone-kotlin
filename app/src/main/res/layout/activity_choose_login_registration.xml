@@ -5,19 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF3A3"
+    android:gravity="center"
     android:orientation="vertical"
+    android:padding="20sp"
     tools:context="com.tasktinder.tinder.ChooseLoginRegistrationActivity">
 
     <Button
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="login" />
+        android:backgroundTint="@color/colorPrimary"
+        android:text="login"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="register" />
+        android:backgroundTint="@color/colorPrimary"
+        android:text="register"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
